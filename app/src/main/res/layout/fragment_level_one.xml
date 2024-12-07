@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ic_level_1">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoreTV"
+        android:padding="10dp"
+        tools:text="SCORE: 100"
+        android:textSize="22sp"
+        android:fontFamily="@font/tulegan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timerTV"
+        android:padding="10dp"
+        tools:text="01:20"
+        android:textSize="16sp"
+        android:fontFamily="@font/tulegan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="100dp"
+        tools:layout_editor_absoluteX="29dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="100dp"
+        tools:layout_editor_absoluteX="29dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="40dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="40dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster3"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="50dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain3"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="50dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster4"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain4"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster5"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain5"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/monster10"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_level_1_monster"
+        android:visibility="gone"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bloodStrain10"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_level_1_blood"
+        android:visibility="gone"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
