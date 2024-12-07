@@ -7,10 +7,11 @@
 
     <string name="timer_value">%1$s:%2$s</string>
 
-    <string name="level_score">Total Score: %1$d</string>
+    <string name="level_total_score">Total Score: %1$d</string>
+    <string name="level_score">Score: %1$d</string>
 
     <string name="level_one_title">Dessert Hunters</string>
-    <string name="level_one_message">Hunt the 50 monsters in 2 minutes to complete this level</string>
+    <string name="level_one_message">Hunt the 30 monsters in 1 minutes to complete this level</string>
 
     <string name="level_two_title">Bombing the Bombers</string>
     <string name="level_two_message">Save the brother\'s tower from plane for 2 minutes to complete this level</string>

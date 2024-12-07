@@ -1,5 +1,6 @@
 package com.freelab.tech.shootdown.game.levels
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,9 @@ class FragmentLevelOne: Fragment() {
     private var isHintDialogShown = false
     private var monsterFiredCount = 0
 
+    private var gunShotMusic: MediaPlayer? = null
+    private var zombieMusic: MediaPlayer? = null
+
     private fun setupObservers() {
         viewModel.timerLiveData.observe(viewLifecycleOwner) { time ->
             if (time == -1) {
@@ -56,12 +60,12 @@ class FragmentLevelOne: Fragment() {
     }
 
     private fun startGame() {
-        viewModel.startTimer(60_000L)
+        viewModel.startTimer(LevelInfo.LEVEL_ONE.time)
         showNewMonster()
     }
 
     private fun endGame() {
-        val message: String = getString(R.string.level_score, monsterFiredCount)
+        val message: String = getString(R.string.level_total_score, monsterFiredCount)
         val title: String = if (monsterFiredCount >= LevelInfo.LEVEL_ONE.score) {
             getString(LevelStatus.COMPLETED.msg)
         } else {
@@ -73,13 +77,18 @@ class FragmentLevelOne: Fragment() {
     }
 
     private fun playGunShotSound() {
+        gunShotMusic?.start()
+    }
 
+    private fun playMonsterAppearSound() {
+        zombieMusic?.start()
     }
 
     private fun showNewMonster() {
         lifecycleScope.launch(Dispatchers.IO) {
             val monsterTurn = Random.nextInt(1, 11)
             delay(DELAY)
+            playMonsterAppearSound()
             withContext(Dispatchers.Main) {
                 when(monsterTurn) {
                     1 -> binding.monster1.visibility = View.VISIBLE
@@ -102,6 +111,7 @@ class FragmentLevelOne: Fragment() {
             monsterFiredCount++
             playGunShotSound()
             withContext(Dispatchers.Main) {
+                binding.scoreTV.text = getString(R.string.level_score, monsterFiredCount)
                 blood.visibility = View.VISIBLE
             }
             delay(DELAY)
@@ -117,11 +127,11 @@ class FragmentLevelOne: Fragment() {
         binding.apply {
             val monsters = listOf(
                 monster1 to bloodStrain1,
-                monster2 to bloodStrain1,
-                monster3 to bloodStrain1,
-                monster4 to bloodStrain1,
-                monster5 to bloodStrain1,
-                monster6 to bloodStrain1,
+                monster2 to bloodStrain2,
+                monster3 to bloodStrain3,
+                monster4 to bloodStrain4,
+                monster5 to bloodStrain5,
+                monster6 to bloodStrain6,
                 monster7 to bloodStrain7,
                 monster8 to bloodStrain8,
                 monster9 to bloodStrain9,
@@ -145,6 +155,8 @@ class FragmentLevelOne: Fragment() {
         setupCLickListener()
         setupObservers()
 
+        binding.scoreTV.text = getString(R.string.level_score, 0)
+
         return binding.root
     }
 
@@ -154,6 +166,15 @@ class FragmentLevelOne: Fragment() {
             isHintDialogShown = true
             showHintDialog()
         }
+
+        gunShotMusic = MediaPlayer.create(requireContext(), R.raw.sound_level_1_gunshot)
+        zombieMusic = MediaPlayer.create(requireContext(), R.raw.sound_level_1_zombie_laugh)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        gunShotMusic = null
+        zombieMusic = null
     }
 
     override fun onDestroyView() {
