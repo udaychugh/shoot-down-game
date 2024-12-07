@@ -42,7 +42,7 @@ class FragmentDashboard:Fragment() {
     private fun setupLevelsRV() {
         val levelsList = arrayListOf(
             getString(R.string.level_one_title),
-            getString(R.string.level_one_title),
+            getString(R.string.level_two_title),
             getString(R.string.coming_soon),
             getString(R.string.coming_soon),
             getString(R.string.coming_soon)

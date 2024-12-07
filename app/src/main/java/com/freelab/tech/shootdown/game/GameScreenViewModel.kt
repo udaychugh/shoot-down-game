@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 class GameScreenViewModel: ViewModel() {
 
-    private val _currentFragmentState = MutableStateFlow(LevelInfo.LEVEL_ONE)
+    private val _currentFragmentState = MutableStateFlow(LevelInfo.DASHBOARD)
     val currentFragmentState: StateFlow<LevelInfo>
         get() = _currentFragmentState
 
@@ -35,7 +35,7 @@ class GameScreenViewModel: ViewModel() {
     }
 
     fun startLevel(level: LevelInfo) {
-
+        _currentFragmentState.value = level
     }
     
 }
