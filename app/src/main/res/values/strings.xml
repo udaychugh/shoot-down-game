@@ -2,7 +2,7 @@
     <string name="app_name">ShootDown</string>
 
     <string name="app_okay">OKAY</string>
-    <string name="app_play">Play</string>
+    <string name="app_play">START GAME</string>
     <string name="app_levels">Levels</string>
 
     <string name="timer_value">%1$s:%2$s</string>

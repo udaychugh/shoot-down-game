@@ -7,4 +7,5 @@
     <color name="box_orange">#FF5722</color>
 
     <color name="dark_overlay">#80000000</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

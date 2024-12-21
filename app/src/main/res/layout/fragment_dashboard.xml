@@ -14,11 +14,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="250dp"
+        android:layout_height="50dp"
+        android:minWidth="300dp"
         android:id="@+id/playBtn"
         android:text="@string/app_play"
-        android:textSize="42sp"
+        android:textSize="24sp"
         android:fontFamily="@font/tulegan"
         android:textAllCaps="true"
         android:textColor="@color/white"
@@ -32,13 +32,14 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:minWidth="250dp"
+        android:layout_height="50dp"
+        android:minWidth="200dp"
         android:id="@+id/levelsTV"
         android:text="@string/app_levels"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:fontFamily="@font/tulegan"
         android:textAllCaps="true"
+        android:textColor="@color/white"
         android:background="@drawable/bg_box"
         android:backgroundTint="@color/box_orange"
         android:layout_marginTop="20dp"
@@ -50,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:id="@+id/levelRV"
         android:layout_marginTop="20dp"
@@ -58,6 +59,8 @@
         android:visibility="gone"
         tools:visibility="visible"
         app:layout_constraintTop_toBottomOf="@+id/levelsTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 
