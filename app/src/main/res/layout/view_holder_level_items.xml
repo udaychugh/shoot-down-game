@@ -10,5 +10,6 @@
     android:fontFamily="@font/tulegan"
     android:textSize="20sp"
     android:textStyle="bold"
-    android:background="@drawable/ic_buttons"
+    android:padding="20dp"
+    android:background="@drawable/bg_box"
     app:backgroundTint="@null" />

@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.freelab.tech.shootdown.R
 import com.freelab.tech.shootdown.databinding.FragmentLevelOneBinding
 import com.freelab.tech.shootdown.game.GameScreenViewModel
-import com.freelab.tech.shootdown.game.hint.HintDialog
+import com.freelab.tech.shootdown.game.hint.HintDialogFragment
 import com.freelab.tech.shootdown.model.LevelInfo
 import com.freelab.tech.shootdown.model.LevelStatus
 import com.freelab.tech.shootdown.utils.formatSecondsToMinutesSeconds
@@ -34,6 +34,7 @@ class FragmentLevelOne: Fragment() {
     private val viewModel: GameScreenViewModel by viewModels({ requireActivity() })
 
     private var isHintDialogShown = false
+    private var hasMonsterShot = false
     private var monsterFiredCount = 0
 
     private var gunShotMusic: MediaPlayer? = null
@@ -54,9 +55,11 @@ class FragmentLevelOne: Fragment() {
     }
 
     private fun showHintDialog() {
-        HintDialog.showHintDialog(requireContext(), R.string.level_one_title, R.string.level_one_message) {
+        val dialog = HintDialogFragment(R.string.level_one_title, R.string.level_one_message) {
             startGame()
         }
+
+        dialog.show(childFragmentManager, "HintDialog")
     }
 
     private fun startGame() {
@@ -71,9 +74,11 @@ class FragmentLevelOne: Fragment() {
         } else {
             getString(LevelStatus.FAILED.msg)
         }
-        HintDialog.showHintDialog(requireContext(), title, message) {
-
+        val dialog = HintDialogFragment(title, message) {
+            viewModel.returnToDashboard()
         }
+
+        dialog.show(childFragmentManager, "EndGameDialog")
     }
 
     private fun playGunShotSound() {
@@ -88,6 +93,7 @@ class FragmentLevelOne: Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
             val monsterTurn = Random.nextInt(1, 11)
             delay(DELAY)
+            hasMonsterShot = false
             playMonsterAppearSound()
             withContext(Dispatchers.Main) {
                 when(monsterTurn) {
@@ -108,6 +114,10 @@ class FragmentLevelOne: Fragment() {
 
     private fun monsterFired(monster: ImageView, blood: ImageView) {
         lifecycleScope.launch(Dispatchers.IO) {
+            if (hasMonsterShot) {
+                return@launch
+            }
+            hasMonsterShot = true
             monsterFiredCount++
             playGunShotSound()
             withContext(Dispatchers.Main) {

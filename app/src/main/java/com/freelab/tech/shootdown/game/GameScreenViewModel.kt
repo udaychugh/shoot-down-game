@@ -37,5 +37,9 @@ class GameScreenViewModel: ViewModel() {
     fun startLevel(level: LevelInfo) {
         _currentFragmentState.value = level
     }
+
+    fun returnToDashboard() {
+        _currentFragmentState.value = LevelInfo.DASHBOARD
+    }
     
 }
