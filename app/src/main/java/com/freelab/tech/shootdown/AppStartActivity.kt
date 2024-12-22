@@ -71,9 +71,10 @@ class AppStartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actionBar?.hide()
         installSplashScreen()
-        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupObservers()
