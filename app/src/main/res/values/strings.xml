@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ShootDown</string>
+
+    <string name="app_okay">OKAY</string>
+    <string name="app_play">START GAME</string>
+    <string name="app_levels">Levels</string>
+
+    <string name="timer_value">%1$s:%2$s</string>
+
+    <string name="level_total_score">Total Score: %1$d</string>
+    <string name="level_score">Score: %1$d</string>
+
+    <string name="level_one_title">Dessert Hunters</string>
+    <string name="level_one_message">Hunt the 20 monsters in 1 minutes to complete this level</string>
+
+    <string name="level_two_title">Bombing the Bombers</string>
+    <string name="level_two_message">Save the brother\'s tower from plane for 2 minutes to complete this level</string>
+
+    <string name="level_completed_message">Level Completed</string>
+    <string name="level_failed_message">Level Failed</string>
+
+    <string name="coming_soon">Coming Soon</string>
+
+    <string name="volume_up_message">Boost up your volume</string>
+
+</resources>

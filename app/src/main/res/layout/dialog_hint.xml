@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/centerCardCL"
+        android:layout_marginHorizontal="20dp"
+        android:minHeight="200dp"
+        android:background="@drawable/bg_box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/messageTV"
+            android:text="@string/app_okay"
+            android:textSize="14sp"
+            android:fontFamily="@font/tulegan"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:layout_margin="20dp"
+            android:minHeight="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTV"
+        android:text="@string/app_okay"
+        android:textSize="16sp"
+        android:fontFamily="@font/tulegan"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/bg_box"
+        android:backgroundTint="@color/box_orange"
+        android:minWidth="300dp"
+        android:padding="20dp"
+        android:layout_marginBottom="-40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/centerCardCL"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/okayTV"
+        android:text="@string/app_okay"
+        android:textSize="16sp"
+        android:fontFamily="@font/tulegan"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/bg_box"
+        android:backgroundTint="@color/box_orange"
+        android:minWidth="300dp"
+        android:padding="20dp"
+        android:layout_marginTop="-40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/centerCardCL"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
