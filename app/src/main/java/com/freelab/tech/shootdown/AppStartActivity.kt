@@ -1,17 +1,15 @@
 package com.freelab.tech.shootdown
 
 import android.animation.ObjectAnimator
-import android.content.Context
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.freelab.tech.shootdown.databinding.ActivityMainBinding
 import com.freelab.tech.shootdown.navigation.NavManager
+import com.freelab.tech.shootdown.utils.showToastMessage
 
 class AppStartActivity : AppCompatActivity() {
 
@@ -49,6 +47,12 @@ class AppStartActivity : AppCompatActivity() {
             NavManager.gotoGameScreenActivity(this@AppStartActivity)
             finish()
         }
+
+        viewModel.volumeAlertLiveData.observe(this) { volume ->
+            if (volume == 0) {
+                showToastMessage(getString(R.string.volume_up_message))
+            }
+        }
     }
 
     private fun animateImageChange(newImageRes: Int) {
@@ -59,14 +63,6 @@ class AppStartActivity : AppCompatActivity() {
 
         fadeIn.start()
 
-    }
-
-    private fun fetchSystemVolume() {
-        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        val volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        if (volume == 0) {
-            Toast.makeText(this, R.string.volume_up_message, Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +82,7 @@ class AppStartActivity : AppCompatActivity() {
         super.onStart()
         loadingMusic = MediaPlayer.create(this, R.raw.sound_loading)
         loadingMusic?.start()
-        fetchSystemVolume()
+        viewModel.fetchSystemVolume()
     }
 
     override fun onStop() {

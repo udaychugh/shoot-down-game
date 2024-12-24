@@ -7,11 +7,25 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import com.freelab.tech.shootdown.utils.SystemUtils
 
 class ShootDownApp: Application() {
 
+    companion object {
+        lateinit var INSTANCE: ShootDownApp
+    }
+
+    private var systemUtils: SystemUtils? = null
+
+    fun getSystemUtils(): SystemUtils {
+        return systemUtils ?: throw IllegalStateException("System utils is not initialized")
+    }
+
     override fun onCreate() {
         super.onCreate()
+
+        INSTANCE = this
+        systemUtils = SystemUtils.getInstance(this)
 
         registerActivityLifecycleCallbacks(object: ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, p1: Bundle?) {

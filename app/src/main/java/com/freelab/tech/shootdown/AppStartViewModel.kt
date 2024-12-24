@@ -1,7 +1,6 @@
 package com.freelab.tech.shootdown
 
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,10 +12,15 @@ class AppStartViewModel: ViewModel() {
         private const val TIMER_INTERVAL = 1_000L
     }
 
+    private val systemUtils = ShootDownApp.INSTANCE.getSystemUtils()
+
     private val _progressLiveData = MutableLiveData<Int>()
     val progressLiveData: LiveData<Int>
         get() = _progressLiveData
 
+    private val _volumeAlertLiveData = MutableLiveData<Int>()
+    val volumeAlertLiveData: LiveData<Int>
+        get() = _volumeAlertLiveData
 
     fun showProgress() {
         val timer = object: CountDownTimer(LOADING_TIME, TIMER_INTERVAL) {
@@ -32,6 +36,12 @@ class AppStartViewModel: ViewModel() {
         }
 
         timer.start()
+    }
+
+    fun fetchSystemVolume() {
+        systemUtils.fetchSystemVolume { volume ->
+            _volumeAlertLiveData.postValue(volume)
+        }
     }
 
 }

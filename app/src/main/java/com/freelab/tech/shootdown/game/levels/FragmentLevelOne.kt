@@ -55,7 +55,10 @@ class FragmentLevelOne: Fragment() {
     }
 
     private fun showHintDialog() {
-        val dialog = HintDialogFragment(R.string.level_one_title, R.string.level_one_message) {
+        val dialog = HintDialogFragment(
+            R.string.level_one_title,
+            R.string.level_one_message
+        ) {
             startGame()
         }
 
@@ -183,6 +186,10 @@ class FragmentLevelOne: Fragment() {
 
     override fun onStop() {
         super.onStop()
+
+        gunShotMusic?.release()
+        zombieMusic?.release()
+
         gunShotMusic = null
         zombieMusic = null
     }
