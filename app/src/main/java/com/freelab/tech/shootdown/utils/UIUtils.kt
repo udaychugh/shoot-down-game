@@ -18,12 +18,15 @@ fun Fragment.showToastMessage(message: String) {
 }
 
 fun Fragment.generatePlaneImage(): ImageView {
+    val screenHeight = resources.displayMetrics.heightPixels
+    val randomY = (-100..screenHeight - 250).random()
     val planeImage = ImageView(requireContext()).apply {
-        layoutParams = ConstraintLayout.LayoutParams(150, 150).apply {
+        layoutParams = ConstraintLayout.LayoutParams(300, 200).apply {
             endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
             topToTop = ConstraintLayout.LayoutParams.PARENT_ID
             bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
-            marginEnd = -20
+            topMargin = randomY
+            marginEnd = -200
         }
 
         setImageResource(R.drawable.ic_level_2_plane)

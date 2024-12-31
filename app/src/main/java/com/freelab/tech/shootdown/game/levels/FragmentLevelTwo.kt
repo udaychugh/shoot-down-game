@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.freelab.tech.shootdown.R
 import com.freelab.tech.shootdown.databinding.FragmentLevelTwoBinding
 import com.freelab.tech.shootdown.game.GameScreenViewModel
@@ -19,6 +20,8 @@ import com.freelab.tech.shootdown.model.LevelStatus
 import com.freelab.tech.shootdown.utils.formatSecondsToMinutesSeconds
 import com.freelab.tech.shootdown.utils.generatePlaneImage
 import com.freelab.tech.shootdown.utils.isColliding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class FragmentLevelTwo: Fragment() {
 
@@ -32,6 +35,7 @@ class FragmentLevelTwo: Fragment() {
     private val viewModel: GameScreenViewModel by viewModels({ requireActivity() })
 
     private var planeImage: ImageView? = null
+    private var planeAnimator: ValueAnimator? = null
 
     private var isHintDialogShown = false
     private var planeFired = 0
@@ -86,16 +90,32 @@ class FragmentLevelTwo: Fragment() {
     }
 
     private fun createPlaneImage() {
-        planeImage = generatePlaneImage()
+        planeImage = generatePlaneImage().apply {
+            setOnClickListener {
+                setImageResource(R.drawable.ic_level_2_blast)
+                planeAnimator?.cancel()
+                planeFired++
+                binding.scoreTV.text = getString(R.string.level_score, planeFired)
+                lifecycleScope.launch {
+                    delay(1000)
+                    removePlaneImage()
+                }
+                // TODO: play blast music
+                lifecycleScope.launch {
+                    delay(1000)
+                    createPlaneImage()
+                }
+            }
+        }
         binding.rootCL.addView(planeImage)
 
-        ValueAnimator.ofFloat(1f, 0f).apply {
+        planeAnimator = ValueAnimator.ofFloat(1f, 0f).apply {
             duration = DELAY
             addUpdateListener { animation ->
                 val progress = animation.animatedValue as Float
                 val parentWidth = binding.rootCL.width
-                val newX = parentWidth - (parentWidth * progress)
-                planeImage?.translationX = newX
+                val newX = parentWidth * (1 - progress)
+                planeImage?.translationX = -newX
 
                 if (isColliding(planeImage, binding.tower2IV)) {
                     endGame()
@@ -109,17 +129,16 @@ class FragmentLevelTwo: Fragment() {
 
     private fun removePlaneImage() {
         if (planeImage != null) {
+            planeAnimator?.cancel()
+            planeAnimator?.end()
             binding.rootCL.removeView(planeImage)
             planeImage = null
+            planeAnimator = null
         }
     }
 
     private fun setupClickListener() {
-        planeImage?.setOnClickListener {
-            removePlaneImage()
-            // TODO: play blast music
-            createPlaneImage()
-        }
+
     }
 
     override fun onCreateView(

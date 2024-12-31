@@ -2,20 +2,16 @@ package com.freelab.tech.shootdown.game
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.LevelListDrawable
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.freelab.tech.shootdown.R
 import com.freelab.tech.shootdown.databinding.ActivityGameScreenBinding
 import com.freelab.tech.shootdown.game.levels.FragmentDashboard
 import com.freelab.tech.shootdown.game.levels.FragmentLevelOne
+import com.freelab.tech.shootdown.game.levels.FragmentLevelTwo
 import com.freelab.tech.shootdown.model.LevelInfo
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class GameScreenActivity : AppCompatActivity() {
@@ -47,7 +43,9 @@ class GameScreenActivity : AppCompatActivity() {
                     LevelInfo.LEVEL_ONE -> {
                         showFragment(LEVEL_ONE)
                     }
-                    LevelInfo.LEVEL_TWO -> {}
+                    LevelInfo.LEVEL_TWO -> {
+                        showFragment(LEVEL_TWO)
+                    }
                     LevelInfo.LEVEL_THREE -> {}
                     LevelInfo.LEVEL_FOUR -> {}
                     LevelInfo.LEVEL_FIVE -> {}
@@ -61,7 +59,7 @@ class GameScreenActivity : AppCompatActivity() {
         val fragment = when (level) {
             DASHBOARD -> FragmentDashboard()
             LEVEL_ONE -> FragmentLevelOne()
-            LEVEL_TWO -> FragmentLevelOne()
+            LEVEL_TWO -> FragmentLevelTwo()
             else -> FragmentLevelOne()
         }
 
