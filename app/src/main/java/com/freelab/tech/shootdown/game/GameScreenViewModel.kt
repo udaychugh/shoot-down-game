@@ -19,6 +19,7 @@ class GameScreenViewModel: ViewModel() {
     val timerLiveData: LiveData<Event<Int>>
         get() = _timerLiveData
 
+    private var currentVisibleFragment = LevelInfo.DASHBOARD
     private var timer: CountDownTimer? = null
     
     fun startTimer(time: Long) {
@@ -46,15 +47,17 @@ class GameScreenViewModel: ViewModel() {
     }
 
     fun startLevel(level: LevelInfo) {
+        currentVisibleFragment = level
         _currentFragmentState.value = level
     }
 
     fun returnToDashboard() {
-        _currentFragmentState.value = LevelInfo.DASHBOARD
+        currentVisibleFragment = LevelInfo.DASHBOARD
+        _currentFragmentState.value = currentVisibleFragment
     }
 
-    fun resetTimerValue() {
-
+    fun getCurrentFragment(): LevelInfo {
+        return currentVisibleFragment
     }
     
 }

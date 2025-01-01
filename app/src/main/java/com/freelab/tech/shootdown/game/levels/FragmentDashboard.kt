@@ -43,9 +43,9 @@ class FragmentDashboard:Fragment() {
         val levelsList = arrayListOf(
             getString(R.string.level_one_title),
             getString(R.string.level_two_title),
-            getString(R.string.coming_soon),
-            getString(R.string.coming_soon),
-            getString(R.string.coming_soon)
+            getString(R.string.level_three_title),
+            getString(R.string.level_four_title),
+            getString(R.string.level_five_title)
         )
         binding.levelRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.levelRV.adapter = LevelsAdapter(levelsList) { position ->

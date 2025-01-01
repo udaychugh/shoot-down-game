@@ -16,6 +16,15 @@
     <string name="level_two_title">Bombing the Bombers</string>
     <string name="level_two_message">Save the brother\'s tower from plane for 2 minutes to complete this level</string>
 
+    <string name="level_three_title">Red Light, Green Light</string>
+    <string name="level_three_message">When light is Red shoot moving player, If miss any player then level failed.</string>
+
+    <string name="level_four_title">Zombie Zombie</string>
+    <string name="level_four_message">Kill the incoming zombies for 2 minutes to survive.</string>
+
+    <string name="level_five_title">Sniper on Duty!</string>
+    <string name="level_five_message">Kill the Mafia in 10 secs to save hostage.</string>
+
     <string name="level_completed_message">Level Completed</string>
     <string name="level_failed_message">Level Failed</string>
 

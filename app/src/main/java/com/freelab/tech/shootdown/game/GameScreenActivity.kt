@@ -3,6 +3,7 @@ package com.freelab.tech.shootdown.game
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -73,5 +74,15 @@ class GameScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupObservers()
+
+        onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (viewModel.getCurrentFragment() == LevelInfo.DASHBOARD) {
+                    finish()
+                } else {
+                    // DO NOTHING
+                }
+            }
+        })
     }
 }
