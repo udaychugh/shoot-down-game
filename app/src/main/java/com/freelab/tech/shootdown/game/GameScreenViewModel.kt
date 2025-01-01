@@ -4,8 +4,8 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.freelab.tech.shootdown.game.adapters.LevelsAdapter
 import com.freelab.tech.shootdown.model.LevelInfo
+import com.freelab.tech.shootdown.utils.Event
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -15,23 +15,34 @@ class GameScreenViewModel: ViewModel() {
     val currentFragmentState: StateFlow<LevelInfo>
         get() = _currentFragmentState
 
-    private val _timerLiveData = MutableLiveData<Int>()
-    val timerLiveData: LiveData<Int>
+    private val _timerLiveData = MutableLiveData<Event<Int>>()
+    val timerLiveData: LiveData<Event<Int>>
         get() = _timerLiveData
+
+    private var timer: CountDownTimer? = null
     
     fun startTimer(time: Long) {
-        val timer = object: CountDownTimer(time, 1000) {
+        if (timer != null) {
+            return
+        }
+        timer = object: CountDownTimer(time, 1000) {
             override fun onTick(time: Long) {
-                _timerLiveData.value = (time/1000).toInt()
+                _timerLiveData.value = Event((time/1000).toInt())
             }
 
             override fun onFinish() {
-                _timerLiveData.value = -1
+                _timerLiveData.value = Event(-1)
+                timer = null
             }
 
         }
 
-        timer.start()
+        timer?.start()
+    }
+
+    fun stopTimer() {
+        timer?.cancel()
+        timer?.onFinish()
     }
 
     fun startLevel(level: LevelInfo) {
@@ -40,6 +51,10 @@ class GameScreenViewModel: ViewModel() {
 
     fun returnToDashboard() {
         _currentFragmentState.value = LevelInfo.DASHBOARD
+    }
+
+    fun resetTimerValue() {
+
     }
     
 }

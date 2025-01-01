@@ -35,17 +35,20 @@ class FragmentLevelOne: Fragment() {
 
     private var isHintDialogShown = false
     private var hasMonsterShot = false
+    private var isGameEnded = false
     private var monsterFiredCount = 0
 
     private var gunShotMusic: MediaPlayer? = null
     private var zombieMusic: MediaPlayer? = null
 
     private fun setupObservers() {
-        viewModel.timerLiveData.observe(viewLifecycleOwner) { time ->
-            if (time == -1) {
-                endGame()
-            } else {
-                binding.timerTV.text = time.formatSecondsToMinutesSeconds()
+        viewModel.timerLiveData.observe(viewLifecycleOwner) { event ->
+            event?.getContentIfNotHandled()?.let { time ->
+                if (time == -1) {
+                    endGame()
+                } else {
+                    binding.timerTV.text = time.formatSecondsToMinutesSeconds()
+                }
             }
         }
     }
@@ -71,6 +74,7 @@ class FragmentLevelOne: Fragment() {
     }
 
     private fun endGame() {
+        isGameEnded = true
         val message: String = getString(R.string.level_total_score, monsterFiredCount)
         val title: String = if (monsterFiredCount >= LevelInfo.LEVEL_ONE.score) {
             getString(LevelStatus.COMPLETED.msg)
@@ -93,6 +97,7 @@ class FragmentLevelOne: Fragment() {
     }
 
     private fun showNewMonster() {
+        if (isGameEnded) return
         lifecycleScope.launch(Dispatchers.IO) {
             val monsterTurn = Random.nextInt(1, 11)
             delay(DELAY)

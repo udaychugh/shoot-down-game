@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -38,6 +37,7 @@ class FragmentLevelTwo: Fragment() {
     private var planeAnimator: ValueAnimator? = null
 
     private var isHintDialogShown = false
+    private var isGameEnded = false
     private var planeFired = 0
 
     private var planeFlyingMusic: MediaPlayer? = null
@@ -45,11 +45,13 @@ class FragmentLevelTwo: Fragment() {
     private var fireworksMusic: MediaPlayer? = null
 
     private fun setupObservers() {
-        viewModel.timerLiveData.observe(viewLifecycleOwner) { time ->
-            if (time == -1) {
-                endGame()
-            } else {
-                binding.timerTV.text = time.formatSecondsToMinutesSeconds()
+        viewModel.timerLiveData.observe(viewLifecycleOwner) { event ->
+            event?.getContentIfNotHandled()?.let { time ->
+                if (time == -1) {
+                    endGame()
+                } else {
+                    binding.timerTV.text = time.formatSecondsToMinutesSeconds()
+                }
             }
         }
     }
@@ -75,11 +77,12 @@ class FragmentLevelTwo: Fragment() {
     }
 
     private fun endGame() {
+        isGameEnded = true
         val message: String = getString(R.string.level_total_score, planeFired)
-        val title: String = if (planeFired >= LevelInfo.LEVEL_TWO.score) {
-            getString(LevelStatus.COMPLETED.msg)
-        } else {
+        val title: String = if (fireworksMusic?.isPlaying == true) {
             getString(LevelStatus.FAILED.msg)
+        } else {
+            getString(LevelStatus.COMPLETED.msg)
         }
 
         val dialog = HintDialogFragment(title, message) {
@@ -90,8 +93,11 @@ class FragmentLevelTwo: Fragment() {
     }
 
     private fun createPlaneImage() {
+        if (isGameEnded) return
         planeImage = generatePlaneImage().apply {
             setOnClickListener {
+                planeFlyingMusic?.stop()
+                planeShotMusic?.start()
                 setImageResource(R.drawable.ic_level_2_blast)
                 planeAnimator?.cancel()
                 planeFired++
@@ -100,7 +106,6 @@ class FragmentLevelTwo: Fragment() {
                     delay(1000)
                     removePlaneImage()
                 }
-                // TODO: play blast music
                 lifecycleScope.launch {
                     delay(1000)
                     createPlaneImage()
@@ -118,13 +123,16 @@ class FragmentLevelTwo: Fragment() {
                 planeImage?.translationX = -newX
 
                 if (isColliding(planeImage, binding.tower2IV)) {
-                    endGame()
+                    fireworksMusic?.start()
+                    planeFlyingMusic?.stop()
+                    viewModel.stopTimer()
                     cancel()
                     removePlaneImage()
                 }
             }
             start()
         }
+        planeFlyingMusic?.start()
     }
 
     private fun removePlaneImage() {
@@ -137,10 +145,6 @@ class FragmentLevelTwo: Fragment() {
         }
     }
 
-    private fun setupClickListener() {
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -149,7 +153,6 @@ class FragmentLevelTwo: Fragment() {
         _binding = FragmentLevelTwoBinding.inflate(inflater, container, false)
 
         setupObservers()
-        setupClickListener()
         binding.scoreTV.text = getString(R.string.level_score, 0)
 
         return binding.root
